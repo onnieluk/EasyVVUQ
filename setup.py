@@ -26,7 +26,7 @@ setup(
     install_requires=['numpy', 'pandas>=0.24', 'scipy',
                       'pytest', 'SQLAlchemy', 'chaospy',
                       'sqlalchemy-utils', 'jsonpickle',
-                      'cerberus', 'SALib'],
+                      'cerberus', 'SALib', 'dask[complete]', 'dask_jobqueue'],
 
     packages=find_packages(),
 
