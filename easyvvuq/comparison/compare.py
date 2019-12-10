@@ -1,5 +1,7 @@
 from . import BaseComparisonElement
 
+import datacompy
+
 __copyright__ = """
 
     Copyright 2018 Robin A. Richardson, David W. Wright
@@ -23,7 +25,7 @@ __copyright__ = """
 __license__ = "LGPL"
 
 
-class Validate(BaseComparisonElement):
+class Compare(BaseComparisonElement):
 
     def element_name(self):
         return "validate"
