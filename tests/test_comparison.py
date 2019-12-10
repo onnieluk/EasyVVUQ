@@ -5,7 +5,8 @@ import os
 import sys
 import pytest
 from pprint import pprint
-import subprocess
+
+import datacompy
 
 __copyright__ = """
 
@@ -133,8 +134,20 @@ def test_comparison(tmpdir):
 
     # Fetch "correct" results for this application into a dataframe
     validation_dataframe = pd.read_csv("tests/compare/correct_results_for_test_comparison.csv")
-
     print("validation dataframe:", validation_dataframe)
+
+    compare = datacompy.Compare(
+        my_campaign.get_last_analysis(),
+        validation_dataframe,
+        join_columns='Dist',
+        abs_tol=0,
+        rel_tol=0
+    )
+
+    print(compare.matches(ignore_extra_columns=False))
+
+    print(compare.report())
+
 
     # Print the campaign log
     pprint(my_campaign._log)
