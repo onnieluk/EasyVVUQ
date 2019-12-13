@@ -107,8 +107,7 @@ def test_comparison(tmpdir):
 
     # Set up samplers
     vary = {
-        "gravity": cp.Uniform(9.8, 1.0),
-        "mass": cp.Uniform(2.0, 10.0),
+        "gravity": cp.Uniform(9.8, 1.0)
     }
     sampler = uq.sampling.RandomSampler(vary=vary, max_num=5)
 
@@ -125,33 +124,37 @@ def test_comparison(tmpdir):
 
     # Collate all data into one pandas data frame
     my_campaign.collate()
-    print("data:", my_campaign.get_collation_result())
+    print("data:\n", my_campaign.get_collation_result())
 
     # Create a BasicStats analysis element and apply it to the campaign
     stats = uq.analysis.BasicStats(qoi_cols=['Dist', 'lastvx', 'lastvy'])
     my_campaign.apply_analysis(stats)
     print("stats:\n", my_campaign.get_last_analysis())
 
+    my_campaign.get_last_analysis().to_csv("tests/compare/correct_results_for_test_comparison.csv")
+
     # Fetch "correct" results for this application into a dataframe
-    validation_dataframe = pd.read_csv("tests/compare/correct_results_for_test_comparison.csv")
-    print("validation dataframe:", validation_dataframe)
+    validation_dataframe = pd.read_csv("tests/compare/correct_results_for_test_comparison.csv", index_col=False)
+    print("validation dataframe:\n", validation_dataframe)
 
     compare = datacompy.Compare(
         my_campaign.get_last_analysis(),
         validation_dataframe,
         join_columns='Dist',
-        abs_tol=0,
-        rel_tol=0
+        abs_tol=100,
+        rel_tol=100,
+        df1_name='Simulation',
+        df2_name='Validation dataset'
     )
 
-    print(compare.matches(ignore_extra_columns=False))
-
-    print(compare.report())
-
+    print("Matches dataset? ", compare.matches(ignore_extra_columns=False))
 
     # Print the campaign log
     pprint(my_campaign._log)
 
+
+
+    print(compare.report())
 
 
 if __name__ == "__main__":
