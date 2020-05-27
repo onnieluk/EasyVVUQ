@@ -419,7 +419,7 @@ References
 
  	Falchetto, G.L., Coster, D., Coelho, R., Scott, B., Figini, L., Kalupin, D., Nardon,E., Nowak, S., Alves, L.L., Artaud, J.F., et al.: The European Integrated TokamakModelling (itm) effort: achievements and first physics results. Nuclear Fusion54(4)(2014) 043018.
 	  
-	Luk, O., Hoenen, O., Bottino, A., Scott, B., Coster, D.:  Compat framework formultiscale simulations applied to fusion plasmas.  Computer Physics Communica-tions (2019).
+	Luk, O.O., Hoenen, O., Bottino, A., Scott, B.D., Coster, D.P.:  Compat framework formultiscale simulations applied to fusion plasmas.  Computer Physics Communica-tions (2019). https://doi.org/10.1016/j.cpc.2007.02.051
 	   
 .. [MTANH] See
            https://pdfs.semanticscholar.org/5dc9/029eb9614a0128ae7c3f16ae6c4e54be4ac5.pdf
